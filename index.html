@@ -3,7 +3,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mis Listas</title>
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#e4572e">
+<meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1c1a17" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Listas">
@@ -13,17 +14,17 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Nunito:wght@500;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#fbf3e4;--card:#fffdf8;--ink:#2d2a26;--mute:#8d857a;--acc:#e4572e;--acc2:#2a9d8f;--line:#eadfca;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1a17;--card:#26231f;--ink:#f3ece0;--mute:#9a9184;--line:#3a352e}}
-:root[data-theme="dark"]{--bg:#1c1a17;--card:#26231f;--ink:#f3ece0;--mute:#9a9184;--line:#3a352e}
-*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Nunito,system-ui,sans-serif;min-height:100vh;background-image:radial-gradient(circle at 15% 0,rgba(228,87,46,.12),transparent 40%),radial-gradient(circle at 90% 100%,rgba(42,157,143,.13),transparent 40%)}
-.wrap{max-width:640px;margin:0 auto;padding:18px 14px 60px}
+:root{--bg:#faf8f5;--g1:#fbf9f6;--g2:#f0ebe1;--dot:#e0d9cf;--glass:rgba(255,255,255,.85);--glassb:rgba(255,255,255,.6);--card:#fffdf8;--ink:#2d2a26;--mute:#8d857a;--acc:#e4572e;--acc2:#2a9d8f;--line:#eadfca;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1a17;--g1:#1e1c19;--g2:#141210;--dot:#2c2823;--glass:rgba(42,38,33,.78);--glassb:rgba(255,255,255,.08);--card:#26231f;--ink:#f3ece0;--mute:#9a9184;--line:#3a352e}}
+:root[data-theme="dark"]{--bg:#1c1a17;--g1:#1e1c19;--g2:#141210;--dot:#2c2823;--glass:rgba(42,38,33,.78);--glassb:rgba(255,255,255,.08);--card:#26231f;--ink:#f3ece0;--mute:#9a9184;--line:#3a352e}
+*{box-sizing:border-box}html{background:var(--bg)}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Nunito,system-ui,sans-serif;min-height:100vh;background-color:var(--bg);background-image:radial-gradient(var(--dot) 1px,transparent 1px),radial-gradient(circle at 15% 0,rgba(228,87,46,.10),transparent 40%),radial-gradient(circle at 90% 100%,rgba(42,157,143,.11),transparent 40%),linear-gradient(135deg,var(--g1) 0%,var(--g2) 100%);background-size:20px 20px,100% 100%,100% 100%,100% 100%;background-attachment:fixed}
+.wrap{max-width:640px;margin:0 auto;padding:28px 14px 60px}
 .tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:10px;scrollbar-width:none}
-.tab{flex:none;border:1.5px solid var(--line);background:var(--card);color:var(--ink);padding:8px 14px;border-radius:99px;font:700 14px Nunito,sans-serif;cursor:pointer}
+.tab{flex:none;border:1.5px solid var(--line);background:var(--glass);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--ink);padding:8px 14px;border-radius:99px;font:700 14px Nunito,sans-serif;cursor:pointer}
 .tab.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .tab.add{color:var(--acc);border-style:dashed}
-.card{background:var(--card);border-radius:24px;padding:20px;box-shadow:0 10px 30px rgba(60,40,10,.10);border:1px solid var(--line)}
+.card{background:var(--glass);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-radius:24px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.06);border:1px solid var(--glassb)}
 .title{width:100%;border:0;background:none;color:var(--ink);font:800 30px Fraunces,Georgia,serif;outline:none;padding:0}
 .sub{color:var(--mute);font-size:14px;margin:4px 0 10px;display:flex;justify-content:space-between}
 .bar{height:8px;background:var(--line);border-radius:9px;overflow:hidden;margin-bottom:14px}
@@ -43,7 +44,8 @@ li.done .chk::after{content:"✓"}
 .bul li.done .chk{background:none;color:var(--mute)}.bul li.done .chk::after{content:""}
 .tx{flex:1;font:600 17px Nunito;word-break:break-word;cursor:pointer}
 li.done .tx{text-decoration:line-through;color:var(--mute)}
-.x{border:0;background:none;color:var(--mute);font-size:20px;cursor:pointer;opacity:.6}
+.x,.ed{border:0;background:none;color:var(--mute);font-size:20px;cursor:pointer;opacity:.6}
+.edit{flex:1;min-width:0;border:1.5px solid var(--acc);background:var(--bg);color:var(--ink);border-radius:10px;padding:6px 10px;font:600 16px Nunito,sans-serif;outline:none}
 .empty{text-align:center;color:var(--mute);padding:26px 0}
 .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .acts button,.m button{border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:9px 13px;font:700 14px Nunito;cursor:pointer}
@@ -109,10 +111,19 @@ function render(full=true){
   if(!n)ul.innerHTML='<div class="empty">✨ Escribe arriba y presiona Enter</div>';
   l.items.forEach(it=>{
     const li=document.createElement('li');if(it.d)li.className='done';
-    li.innerHTML='<button class="chk" aria-label="marcar"></button><span class="tx"></span><button class="x" aria-label="quitar">✕</button>';
+    li.innerHTML='<button class="chk" aria-label="marcar"></button><span class="tx"></span><button class="ed" aria-label="editar">✎</button><button class="x" aria-label="quitar">✕</button>';
     li.querySelector('.tx').textContent=it.t;
     const tog=()=>{it.d=!it.d;save();render(false)};
     li.querySelector('.chk').onclick=tog;li.querySelector('.tx').onclick=tog;
+    li.querySelector('.ed').onclick=()=>{
+      const sp=li.querySelector('.tx'),inp=document.createElement('input');
+      inp.className='edit';inp.value=it.t;inp.maxLength=300;inp.enterKeyHint='done';
+      sp.replaceWith(inp);inp.focus();inp.select();
+      let fin=false;
+      const end=ok=>{if(fin)return;fin=true;const v=inp.value.trim();if(ok&&v)it.t=v;save();render(false)};
+      inp.onkeydown=e=>{if(e.key==='Enter')end(true);else if(e.key==='Escape')end(false)};
+      inp.onblur=()=>end(true);
+    };
     li.querySelector('.x').onclick=()=>{l.items=l.items.filter(z=>z!==it);save();render(false)};
     ul.appendChild(li)});
 }
